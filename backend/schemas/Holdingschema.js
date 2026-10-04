@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const holdingSchema = new Schema(
   {
+    user: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
     name: { type: String, required: true, trim: true },
     qty: { type: Number, required: true, min: 0 },
     price: { type: Number, required: true, min: 0 },

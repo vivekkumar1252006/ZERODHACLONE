@@ -1,7 +1,7 @@
 import React from 'react';
 import { appPath, mediaPath } from '../../paths';
 
-function Header({ navTabs, activeTab, onTabChange }) {
+function Header({ navTabs, activeTab, onTabChange, user, onLogout }) {
   return (
     <header className='trading-header'>
       <a href={appPath('/')} className='trading-brand' aria-label='Zerodha home'>
@@ -22,9 +22,9 @@ function Header({ navTabs, activeTab, onTabChange }) {
       </nav>
 
       <div className='trading-user'>
-        <span className='trading-avatar'>VK</span>
-        <span>Vivek Kumar</span>
-        <button type='button' aria-label='Open profile menu' className='profile-menu'>⌄</button>
+        <span className='trading-avatar'>{user?.email?.slice(0, 2).toUpperCase() || 'U'}</span>
+        <span>{user?.email || 'Account'}</span>
+        <button type='button' className='logout-button' onClick={onLogout}>Log out</button>
       </div>
     </header>
   );

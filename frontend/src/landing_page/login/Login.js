@@ -2,16 +2,32 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../support/Navbar';
 import { appPath, mediaPath } from '../../paths';
+import { apiRequest, AUTH_TOKEN_KEY } from '../../api';
 
 function Login() {
-  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    navigate('/dashboard');
+    setError('');
+    setSubmitting(true);
+    try {
+      const result = await apiRequest('/api/auth/login', {
+        method: 'POST',
+        body: { email, password },
+      });
+      sessionStorage.setItem(AUTH_TOKEN_KEY, result.token);
+      navigate('/dashboard');
+    } catch (requestError) {
+      setError(requestError.message);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -30,15 +46,16 @@ function Login() {
             <p className='login-form-panel__description'>Enter your details to continue to your dashboard.</p>
 
             <form className='login-form' onSubmit={handleSubmit}>
-              <label htmlFor='login-user-id'>User ID</label>
+              <label htmlFor='login-email'>Email address</label>
               <input
-                id='login-user-id'
-                name='userId'
-                type='text'
-                autoComplete='username'
-                value={userId}
-                onChange={(event) => setUserId(event.target.value)}
-                placeholder='Enter your user ID'
+                id='login-email'
+                name='email'
+                type='email'
+                autoComplete='email'
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder='Enter your email address'
+                required
               />
 
               <label htmlFor='login-password'>Password</label>
@@ -51,6 +68,7 @@ function Login() {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   placeholder='Enter your password'
+                  required
                 />
                 <button
                   className='login-password-toggle'
@@ -63,11 +81,14 @@ function Login() {
               </div>
 
               <a className='login-forgot-link' href={appPath('/support')}>Forgot password?</a>
-              <button className='login-submit' type='submit'>Continue</button>
+              {error && <p className='form-error' role='alert'>{error}</p>}
+              <button className='login-submit' type='submit' disabled={submitting}>
+                {submitting ? 'Signing in…' : 'Continue'}
+              </button>
             </form>
 
             <p className='login-demo-note'>
-              Demo access: click Continue to open the dashboard. Credentials are not checked or stored.
+              Your account is securely verified before opening the dashboard.
             </p>
             <p className='login-signup-link'>
               New to investing? <a href={appPath('/Signup')}>Create an account</a>

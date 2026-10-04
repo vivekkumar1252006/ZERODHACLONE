@@ -3,15 +3,38 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../support/Navbar';
 import Footer from '../../footer';
 import { appPath, mediaPath } from '../../paths';
+import { apiRequest, AUTH_TOKEN_KEY } from '../../api';
 
 function Signup() {
   const [mobile, setMobile] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    navigate('/dashboard');
+    setError('');
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const result = await apiRequest('/api/auth/signup', {
+        method: 'POST',
+        body: { mobile, email, password },
+      });
+      sessionStorage.setItem(AUTH_TOKEN_KEY, result.token);
+      navigate('/dashboard');
+    } catch (requestError) {
+      setError(requestError.message);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -26,8 +49,8 @@ function Signup() {
           </div>
           <div className='container signup-layout'>
             <div className='signup-form-panel'>
-              <h2>Sign up with your mobile number</h2>
-              <p>We will send you an OTP to verify your number.</p>
+              <h2>Create your account</h2>
+              <p>Enter your details to securely create an account.</p>
               <form onSubmit={handleSubmit}>
                 <label htmlFor='mobile'>Mobile number</label>
                 <div className='mobile-input'>
@@ -42,6 +65,7 @@ function Signup() {
                     value={mobile}
                     onChange={(event) => setMobile(event.target.value.replace(/\D/g, ''))}
                     placeholder='Enter 10-digit mobile number'
+                    required
                   />
                 </div>
                 <label htmlFor='email'>Email address</label>
@@ -53,8 +77,39 @@ function Signup() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder='Enter your email address'
+                  autoComplete='email'
+                  required
                 />
-                <button type='submit' className='signup-submit'>Continue</button>
+                <label htmlFor='signup-password'>Password</label>
+                <input
+                  className='signup-email-input'
+                  id='signup-password'
+                  name='password'
+                  type='password'
+                  autoComplete='new-password'
+                  minLength='8'
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  placeholder='At least 8 characters'
+                  required
+                />
+                <label htmlFor='signup-confirm-password'>Confirm password</label>
+                <input
+                  className='signup-email-input'
+                  id='signup-confirm-password'
+                  name='confirmPassword'
+                  type='password'
+                  autoComplete='new-password'
+                  minLength='8'
+                  value={confirmPassword}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  placeholder='Re-enter your password'
+                  required
+                />
+                {error && <p className='form-error' role='alert'>{error}</p>}
+                <button type='submit' className='signup-submit' disabled={submitting}>
+                  {submitting ? 'Creating account…' : 'Continue'}
+                </button>
               </form>
               <p className='signup-terms'>
                 By continuing, you agree to Zerodha&apos;s <a href={appPath('/support')}>terms and policies</a>.

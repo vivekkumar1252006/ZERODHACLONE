@@ -24,19 +24,6 @@ function PortfolioSummary({ cards }) {
             </div>
           )}
 
-          {card.label === 'Equity' && (
-            <div className='mini-chart' aria-hidden='true'>
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-          )}
-
-          {card.label === 'Available margin' && <div className='margin-bar'><span /></div>}
         </article>
       ))}
     </section>
