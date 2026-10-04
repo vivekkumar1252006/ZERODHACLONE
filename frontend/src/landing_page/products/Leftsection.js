@@ -1,7 +1,8 @@
 import React from 'react';
+import { appPath, mediaPath } from '../../paths';
 
 function LeftSection({
-  imageUrl = '/media/product-feature.jpeg',
+  imageUrl = mediaPath('product-feature.jpeg'),
   imageAlt = 'Product feature illustration',
   title = 'Trade smarter with clarity',
   description = 'Access a sharper way to manage your investments with a platform designed for speed, precision, and confidence.',
@@ -19,7 +20,7 @@ function LeftSection({
         <div className='education-copy'>
           <h1>{title}</h1>
           <p>{description}</p>
-          <a href={actionLink} className='info-link'>
+          <a href={appPath(actionLink)} className='info-link'>
             {actionLabel} <i className='fa fa-long-arrow-right' aria-hidden='true' />
           </a>
           {children}

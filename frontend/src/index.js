@@ -16,7 +16,7 @@ import Dashboard from './dashboard/Dashboard';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route path='/' element={<Homepage />} />
       <Route path='/Signup' element={<Signup />} />

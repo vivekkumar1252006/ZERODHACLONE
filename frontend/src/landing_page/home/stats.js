@@ -1,4 +1,5 @@
 import React from 'react';
+import { appPath, mediaPath } from '../../paths';
 
 function Stats() {
   return (
@@ -31,15 +32,15 @@ function Stats() {
 
         <div className='info-visual'>
           <img
-            src='/media/home-trust-universe.jpeg'
+            src={mediaPath('home-trust-universe.jpeg')}
             alt='Zerodha trust and support'
             className='img-fluid'
           />
           <div className='info-links'>
-            <a href='/product' className='info-link'>
+            <a href={appPath('/product')} className='info-link'>
               Explore our products <i className='fa fa-long-arrow-right' aria-hidden='true' />
             </a>
-            <a href='/product' className='info-link'>
+            <a href={appPath('/product')} className='info-link'>
               Try Kite demo <i className='fa fa-long-arrow-right' aria-hidden='true' />
             </a>
           </div>

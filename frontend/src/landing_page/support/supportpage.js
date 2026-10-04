@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import Footer from '../../footer';
+import { appPath } from '../../paths';
 
 const categories = [
   {
@@ -87,7 +88,7 @@ function Support() {
                   <h3>{category.title}</h3>
                   <p>{category.description}</p>
                   <ul>
-                    {category.links.map((link) => <li key={link}><a href='/support'>{link}</a></li>)}
+                    {category.links.map((link) => <li key={link}><a href={appPath('/support')}>{link}</a></li>)}
                   </ul>
                 </article>
               ))}
@@ -102,7 +103,7 @@ function Support() {
                 <h2>Can&apos;t find what you&apos;re looking for?</h2>
                 <p>Raise a ticket and our support team will help you.</p>
               </div>
-              <a href='/support' className='support-button'>Create a ticket</a>
+              <a href={appPath('/support')} className='support-button'>Create a ticket</a>
             </div>
           </div>
         </section>

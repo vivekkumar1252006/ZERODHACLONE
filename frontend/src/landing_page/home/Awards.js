@@ -1,4 +1,5 @@
 import React from 'react';
+import { mediaPath } from '../../paths';
 
 function Awards() {
   return (
@@ -6,7 +7,7 @@ function Awards() {
       <div className='container awards-layout'>
         <div className='award-visual'>
           <img
-            src='/media/home-awards-trophy.jpeg'
+            src={mediaPath('home-awards-trophy.jpeg')}
             alt='Zerodha awards'
             className='img-fluid'
           />
@@ -49,7 +50,7 @@ function Awards() {
           </div>
 
           <img
-            src='/media/home-awards-press.jpeg'
+            src={mediaPath('home-awards-press.jpeg')}
             alt='Zerodha awards'
             className='img-fluid mt-3'
           />

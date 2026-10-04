@@ -1,13 +1,12 @@
 import React from 'react';
-
-const logoSrc = process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/media/logo.png` : '/media/logo.png';
+import { appPath, mediaPath } from './paths';
 
 function Footer() {
   return (
     <footer className='footer'>
       <div className='container footer-inner'>
         <div className='footer-column footer-brand'>
-          <img src={logoSrc} alt='Zerodha Logo' className='footer-small-logo' />
+          <img src={mediaPath('logo.png')} alt='Zerodha Logo' className='footer-small-logo' />
           <p>© 2010 - 2024, Not Zerodha Broking Ltd.</p>
           <p>All rights reserved.</p>
           <div className='footer-socials'>
@@ -21,30 +20,30 @@ function Footer() {
 
         <div className='footer-column'>
           <h3>Company</h3>
-          <a href='/About'>About</a>
-          <a href='/product'>Products</a>
-          <a href='/pricing'>Pricing</a>
-          <a href='/support'>Referral programme</a>
-          <a href='/support'>Careers</a>
-          <a href='/'>Zerodha.tech</a>
-          <a href='/'>Press &amp; media</a>
-          <a href='/'>Zerodha cares (CSR)</a>
+          <a href={appPath('/About')}>About</a>
+          <a href={appPath('/product')}>Products</a>
+          <a href={appPath('/pricing')}>Pricing</a>
+          <a href={appPath('/support')}>Referral programme</a>
+          <a href={appPath('/support')}>Careers</a>
+          <a href={appPath('/')}>Zerodha.tech</a>
+          <a href={appPath('/')}>Press &amp; media</a>
+          <a href={appPath('/')}>Zerodha cares (CSR)</a>
         </div>
 
         <div className='footer-column'>
           <h3>Support</h3>
-          <a href='/support'>Contact</a>
-          <a href='/support'>Support portal</a>
-          <a href='/'>Z-Connect blog</a>
-          <a href='/'>List of charges</a>
-          <a href='/'>Downloads &amp; resources</a>
+          <a href={appPath('/support')}>Contact</a>
+          <a href={appPath('/support')}>Support portal</a>
+          <a href={appPath('/')}>Z-Connect blog</a>
+          <a href={appPath('/')}>List of charges</a>
+          <a href={appPath('/')}>Downloads &amp; resources</a>
         </div>
 
         <div className='footer-column'>
           <h3>Quick links</h3>
-          <a href='/Signup'>Open an account</a>
-          <a href='/support'>Fund transfer</a>
-          <a href='/pricing'>60 day challenge</a>
+          <a href={appPath('/Signup')}>Open an account</a>
+          <a href={appPath('/support')}>Fund transfer</a>
+          <a href={appPath('/pricing')}>60 day challenge</a>
         </div>
       </div>
 
@@ -80,13 +79,13 @@ function Footer() {
           offering such services, please create a ticket here.”
         </p>
         <div className='footer-legal-links'>
-          <a href='/'>NSE</a>
-          <a href='/'>BSE</a>
-          <a href='/'>MCX</a>
-          <a href='/'>Terms &amp; conditions</a>
-          <a href='/'>Policies &amp; procedures</a>
-          <a href='/'>Privacy policy</a>
-          <a href='/'>Disclosure</a>
+          <a href={appPath('/')}>NSE</a>
+          <a href={appPath('/')}>BSE</a>
+          <a href={appPath('/')}>MCX</a>
+          <a href={appPath('/')}>Terms &amp; conditions</a>
+          <a href={appPath('/')}>Policies &amp; procedures</a>
+          <a href={appPath('/')}>Privacy policy</a>
+          <a href={appPath('/')}>Disclosure</a>
         </div>
       </div>
     </footer>

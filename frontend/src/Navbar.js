@@ -1,12 +1,11 @@
 import React from 'react';
-
-const logoSrc = process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/media/logo.png` : '/media/logo.png';
+import { mediaPath } from './paths';
 
 function Navbar(){
     return(     
         <div className='navbar'>
             <div className='navbar-logo'>
-                <img src={logoSrc} alt='Logo' className='logo-image' />
+                <img src={mediaPath('logo.png')} alt='Logo' className='logo-image' />
             </div>
         </div>
     );

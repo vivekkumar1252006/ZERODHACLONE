@@ -1,4 +1,5 @@
 import React from 'react';
+import { appPath, mediaPath } from '../../paths';
 import Navbar from '../support/Navbar';
 import Footer from '../../footer';
 
@@ -35,7 +36,7 @@ function Pricing() {
         <section className='pricing-hero'>
           <div className='container'>
             <img
-              src='/media/homehero.png'
+              src={mediaPath('homehero.png')}
               alt='Zerodha investing and trading platform'
               className='pricing-hero-image'
             />
@@ -76,7 +77,7 @@ function Pricing() {
               A few charges are collected by exchanges, regulators, or depositories.
               We show them clearly so you always know the complete cost of a trade.
             </p>
-            <a href='/Signup' className='pricing-action'>
+            <a href={appPath('/Signup')} className='pricing-action'>
               Open an account <i className='fa fa-long-arrow-right' aria-hidden='true' />
             </a>
           </div>
@@ -106,7 +107,7 @@ function Pricing() {
         <div className='container'>
           <h2>Invest in yourself</h2>
           <p>Start your investing journey with a simple, transparent pricing model.</p>
-          <a href='/Signup' className='hero-cta'>Sign up now</a>
+          <a href={appPath('/Signup')} className='hero-cta'>Sign up now</a>
         </div>
       </section>
       </main>

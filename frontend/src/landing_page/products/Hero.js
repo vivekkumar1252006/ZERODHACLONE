@@ -1,4 +1,5 @@
 import React from 'react';
+import { appPath } from '../../paths';
 
 function Hero() {
     return (
@@ -10,7 +11,7 @@ function Hero() {
             </h3>
             <p className='mt-3'>
                 Check out our{' '}
-                <a className='info-link' href='/pricing'>
+                <a className='info-link' href={appPath('/pricing')}>
                     investment offerings{' '}
                     <i className='fa fa-long-arrow-right' aria-hidden='true' />
                 </a>

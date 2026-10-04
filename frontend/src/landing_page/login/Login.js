@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../support/Navbar';
+import { appPath, mediaPath } from '../../paths';
 
 function Login() {
   const [userId, setUserId] = useState('');
@@ -18,8 +19,8 @@ function Login() {
       <Navbar variant='login' />
       <main className='login-page'>
         <div className='login-background-video' aria-hidden='true'>
-          <video autoPlay loop muted playsInline poster='/media/trading-hero.png'>
-            <source src='/media/trading-side.mp4' type='video/mp4' />
+          <video autoPlay loop muted playsInline poster={mediaPath('trading-hero.png')}>
+            <source src={mediaPath('trading-side.mp4')} type='video/mp4' />
           </video>
         </div>
         <section className='login-card' aria-labelledby='login-title'>
@@ -61,7 +62,7 @@ function Login() {
                 </button>
               </div>
 
-              <a className='login-forgot-link' href='/support'>Forgot password?</a>
+              <a className='login-forgot-link' href={appPath('/support')}>Forgot password?</a>
               <button className='login-submit' type='submit'>Continue</button>
             </form>
 
@@ -69,7 +70,7 @@ function Login() {
               Demo access: click Continue to open the dashboard. Credentials are not checked or stored.
             </p>
             <p className='login-signup-link'>
-              New to investing? <a href='/Signup'>Create an account</a>
+              New to investing? <a href={appPath('/Signup')}>Create an account</a>
             </p>
           </div>
         </section>

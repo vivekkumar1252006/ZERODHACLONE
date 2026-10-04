@@ -5,6 +5,7 @@ import RightSection from './Rightsection';
 import PartnerUniverse from './PartnerUniverse';
 import Navbar from '../support/Navbar';
 import Footer from '../../footer';
+import { mediaPath } from '../../paths';
 
 function Product() {
   return (
@@ -13,7 +14,7 @@ function Product() {
       <main>
         <Hero />
         <LeftImage
-          imageUrl='/media/product-showcase.png'
+          imageUrl={mediaPath('product-showcase.png')}
           productName='Kite'
           productDescription='Trade stocks for delivery or intraday on over 5000 stocks listed on NSE and BSE.'
           tryDemo='Try demo'
@@ -23,7 +24,7 @@ function Product() {
         />
 
         <RightSection
-          imageUrl='/media/product-console.jpeg'
+          imageUrl={mediaPath('product-console.jpeg')}
           imageAlt='Console trading dashboard'
           title='Console'
           description='The central dashboard for your Zerodha account. Gain insights into your investments with in-depth reports and visualizations.'
@@ -32,7 +33,7 @@ function Product() {
         />
 
         <RightSection
-          imageUrl='/media/product-coin.jpeg'
+          imageUrl={mediaPath('product-coin.jpeg')}
           imageAlt='Coin mutual fund experience'
           title='Coin'
           description='Zero-commission investing with a diversified set of mutual funds and a simpler experience for long-term wealth building.'

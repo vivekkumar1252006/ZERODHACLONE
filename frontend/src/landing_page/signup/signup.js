@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../support/Navbar';
 import Footer from '../../footer';
+import { appPath, mediaPath } from '../../paths';
 
 function Signup() {
   const [mobile, setMobile] = useState('');
@@ -19,8 +20,8 @@ function Signup() {
       <main className='signup-page'>
         <section className='signup-section'>
           <div className='signup-video' aria-hidden='true'>
-            <video autoPlay loop muted playsInline poster='/media/trading-hero.png'>
-              <source src='/media/trading-side.mp4' type='video/mp4' />
+            <video autoPlay loop muted playsInline poster={mediaPath('trading-hero.png')}>
+              <source src={mediaPath('trading-side.mp4')} type='video/mp4' />
             </video>
           </div>
           <div className='container signup-layout'>
@@ -56,15 +57,15 @@ function Signup() {
                 <button type='submit' className='signup-submit'>Continue</button>
               </form>
               <p className='signup-terms'>
-                By continuing, you agree to Zerodha&apos;s <a href='/support'>terms and policies</a>.
+                By continuing, you agree to Zerodha&apos;s <a href={appPath('/support')}>terms and policies</a>.
               </p>
             </div>
           </div>
         </section>
 
         <section className='signup-video-showcase' aria-label='Trading platform preview'>
-          <video autoPlay loop muted playsInline poster='/media/trading-hero.png'>
-            <source src='/media/trading-side.mp4' type='video/mp4' />
+          <video autoPlay loop muted playsInline poster={mediaPath('trading-hero.png')}>
+            <source src={mediaPath('trading-side.mp4')} type='video/mp4' />
           </video>
           <div className='signup-video-showcase__overlay'>
             <div className='container'>

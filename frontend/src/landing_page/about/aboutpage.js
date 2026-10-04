@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../support/Navbar';
 import Footer from '../../footer';
+import { appPath, mediaPath } from '../../paths';
 
 function About() {
   return (
@@ -72,7 +73,7 @@ function About() {
           <div className='container about-founder__grid'>
             <div className='about-founder__image'>
               <img
-                src='/media/about-founder.jpeg'
+                src={mediaPath('about-founder.jpeg')}
                 alt='Nithin Kamath, founder and CEO of Zerodha'
               />
             </div>
@@ -94,7 +95,7 @@ function About() {
           <div className='container'>
             <h2>Join the investing revolution.</h2>
             <p>Open your account and start investing with Zerodha.</p>
-            <a href='/Signup' className='hero-cta'>Sign up now</a>
+            <a href={appPath('/Signup')} className='hero-cta'>Sign up now</a>
           </div>
         </section>
       </main>

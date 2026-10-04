@@ -1,4 +1,5 @@
 import React from 'react';
+import { mediaPath } from '../../paths';
 
 function LeftImage({
   imageUrl,
@@ -32,10 +33,10 @@ function LeftImage({
 
           <div className='store-actions'>
             <a href={googleplay} className='store-button store-button--badge' target='_blank' rel='noreferrer'>
-              <img src='/media/google-play-badge.png' alt='Get it on Google Play' className='store-badge' />
+              <img src={mediaPath('google-play-badge.png')} alt='Get it on Google Play' className='store-badge' />
             </a>
             <a href={appstore} className='store-button store-button--badge' target='_blank' rel='noreferrer'>
-              <img src='/media/app-store-badge.png' alt='Download on the App Store' className='store-badge' />
+              <img src={mediaPath('app-store-badge.png')} alt='Download on the App Store' className='store-badge' />
             </a>
           </div>
         </div>

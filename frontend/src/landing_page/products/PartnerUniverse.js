@@ -1,28 +1,29 @@
 import React from 'react';
+import { appPath, mediaPath } from '../../paths';
 
 const partnerPlatforms = [
   {
-    imageUrl: '/media/partner-sensibull.jpeg',
+    imageUrl: mediaPath('partner-sensibull.jpeg'),
     imageAlt: 'Sensibull',
   },
   {
-    imageUrl: '/media/partner-fund-house.jpeg',
+    imageUrl: mediaPath('partner-fund-house.jpeg'),
     imageAlt: 'Zerodha Fund House',
   },
   {
-    imageUrl: '/media/partner-goldenpi.jpeg',
+    imageUrl: mediaPath('partner-goldenpi.jpeg'),
     imageAlt: 'GoldenPi',
   },
   {
-    imageUrl: '/media/partner-streak.jpeg',
+    imageUrl: mediaPath('partner-streak.jpeg'),
     imageAlt: 'Streak',
   },
   {
-    imageUrl: '/media/partner-smallcase.jpeg',
+    imageUrl: mediaPath('partner-smallcase.jpeg'),
     imageAlt: 'smallcase',
   },
   {
-    imageUrl: '/media/partner-ditto.jpeg',
+    imageUrl: mediaPath('partner-ditto.jpeg'),
     imageAlt: 'Ditto',
   },
 ];
@@ -43,7 +44,7 @@ function PartnerUniverse() {
             </div>
           ))}
         </div>
-        <a href='/Signup' className='universe-signup'>
+        <a href={appPath('/Signup')} className='universe-signup'>
           Sign up now
         </a>
       </div>

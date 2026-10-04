@@ -1,12 +1,11 @@
 import React from 'react';
-
-const logoSrc = process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/media/logo.png` : '/media/logo.png';
+import { appPath, mediaPath } from '../../paths';
 
 function Header({ navTabs, activeTab, onTabChange }) {
   return (
     <header className='trading-header'>
-      <a href='/' className='trading-brand' aria-label='Zerodha home'>
-        <img src={logoSrc} alt='Zerodha' />
+      <a href={appPath('/')} className='trading-brand' aria-label='Zerodha home'>
+        <img src={mediaPath('logo.png')} alt='Zerodha' />
       </a>
 
       <nav className='trading-nav' aria-label='Trading navigation'>

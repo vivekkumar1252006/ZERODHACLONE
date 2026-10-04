@@ -1,4 +1,5 @@
 import React from 'react';
+import { mediaPath } from '../../paths';
 
 function Team() {
   return (
@@ -6,7 +7,7 @@ function Team() {
       <div className='container info-layout'>
         <div style={{ width: 'min(100%, 340px)', transform: 'translateX(-28px)' }}>
           <img
-            src='/media/about-founder.jpeg'
+            src={mediaPath('about-founder.jpeg')}
             alt='Nithin Kamath, founder of Zerodha'
             className='img-fluid'
             style={{
