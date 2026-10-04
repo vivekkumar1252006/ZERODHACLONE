@@ -1,0 +1,121 @@
+export const chartTimeframes = ['1D', '5D', '1M', '6M', 'YTD', '1Y', '5Y', 'Max'];
+
+export const stockSnapshots = {
+  'NIFTY 50': {
+    symbol: 'NIFTY 50',
+    exchange: 'INDICES',
+    price: '22,487.35',
+    change: '+0.42%',
+    positive: true,
+    asOf: 'As of 3:30 PM',
+    open: '22,434.10',
+    high: '22,512.00',
+    low: '22,416.80',
+    previousClose: '22,391.50',
+    sparkline: 'M0 126 C18 124 24 117 42 119 C60 121 67 112 82 114 C98 116 104 100 120 104 C138 109 145 91 161 94 C178 97 186 76 203 82 C220 88 228 68 246 71 C263 74 271 53 289 59 C307 65 316 49 333 53 C351 57 360 38 378 44 C396 50 405 31 422 35 C440 39 452 26 468 30 C481 33 490 22 500 18'
+  },
+  'SENSEX': {
+    symbol: 'SENSEX',
+    exchange: 'INDICES',
+    price: '74,119.39',
+    change: '+0.31%',
+    positive: true,
+    asOf: 'As of 3:30 PM',
+    open: '73,960.20',
+    high: '74,286.40',
+    low: '73,890.50',
+    previousClose: '73,908.60',
+    sparkline: 'M0 110 C20 90 42 92 64 88 C86 84 100 64 126 68 C150 72 168 49 194 54 C214 59 238 42 260 50 C282 58 304 46 328 45 C352 44 368 35 390 38 C412 41 432 26 456 20 C478 15 488 18 500 8'
+  },
+  RELIANCE: {
+    symbol: 'RELIANCE',
+    exchange: 'NSE',
+    price: '2,942.50',
+    change: '-0.18%',
+    positive: false,
+    asOf: 'As of 3:30 PM',
+    open: '2,946.20',
+    high: '2,961.80',
+    low: '2,934.60',
+    previousClose: '2,948.80',
+    sparkline: 'M0 120 C26 124 42 110 62 106 C84 101 94 80 118 74 C136 68 166 62 182 56 C198 50 212 44 228 46 C244 49 264 34 286 42 C306 49 326 51 346 39 C366 27 390 18 412 22 C432 26 452 14 474 10 C494 6 500 8 500 8'
+  },
+  TCS: {
+    symbol: 'TCS',
+    exchange: 'NSE',
+    price: '3,842.10',
+    change: '+0.65%',
+    positive: true,
+    asOf: 'As of 3:30 PM',
+    open: '3,818.75',
+    high: '3,848.15',
+    low: '3,813.90',
+    previousClose: '3,819.80',
+    sparkline: 'M0 82 C26 86 42 90 62 84 C84 78 102 56 124 60 C144 64 162 52 184 48 C204 45 224 40 246 38 C264 36 284 28 304 32 C326 36 350 12 378 16 C398 19 420 10 440 12 C460 15 480 4 500 8'
+  },
+  INFY: {
+    symbol: 'INFY',
+    exchange: 'NSE',
+    price: '1,528.75',
+    change: '-0.27%',
+    positive: false,
+    asOf: 'As of 3:30 PM',
+    open: '1,533.10',
+    high: '1,540.45',
+    low: '1,523.20',
+    previousClose: '1,533.80',
+    sparkline: 'M0 90 C24 92 42 84 60 88 C78 92 100 84 120 68 C140 52 160 58 182 62 C202 66 222 80 242 78 C264 76 286 68 310 62 C334 55 356 64 378 58 C400 52 424 50 448 44 C470 40 488 30 500 24'
+  },
+  HDFCBANK: {
+    symbol: 'HDFCBANK',
+    exchange: 'NSE',
+    price: '1,664.20',
+    change: '+1.12%',
+    positive: true,
+    asOf: 'As of 3:30 PM',
+    open: '1,649.40',
+    high: '1,668.70',
+    low: '1,646.30',
+    previousClose: '1,647.90',
+    sparkline: 'M0 118 C16 112 30 96 46 94 C68 91 84 74 104 72 C126 70 146 50 170 46 C192 42 212 30 232 26 C258 20 280 14 304 18 C326 22 348 12 372 8 C394 5 418 18 440 10 C462 2 480 6 500 0'
+  },
+  TATAMOTORS: {
+    symbol: 'TATAMOTORS',
+    exchange: 'NSE',
+    price: '932.45',
+    change: '-1.08%',
+    positive: false,
+    asOf: 'As of 3:30 PM',
+    open: '942.15',
+    high: '946.30',
+    low: '928.40',
+    previousClose: '941.90',
+    sparkline: 'M0 86 C22 78 40 64 62 60 C84 56 104 52 124 48 C150 44 170 58 194 62 C218 66 238 76 262 78 C286 80 308 86 332 92 C356 98 380 106 404 100 C426 94 450 90 478 98 C494 103 500 108 500 110'
+  },
+  ICICIBANK: {
+    symbol: 'ICICIBANK',
+    exchange: 'NSE',
+    price: '1,174.65',
+    change: '+0.74%',
+    positive: true,
+    asOf: 'As of 3:30 PM',
+    open: '1,166.10',
+    high: '1,178.80',
+    low: '1,164.50',
+    previousClose: '1,166.25',
+    sparkline: 'M0 120 C20 116 36 104 56 100 C76 96 96 92 116 82 C138 72 160 44 184 48 C206 52 226 36 246 38 C266 40 288 32 314 28 C336 24 360 16 382 18 C404 20 426 10 450 12 C472 14 486 4 500 2'
+  },
+  ITC: {
+    symbol: 'ITC',
+    exchange: 'NSE',
+    price: '430.90',
+    change: '-0.52%',
+    positive: false,
+    asOf: 'As of 3:30 PM',
+    open: '432.80',
+    high: '434.60',
+    low: '429.40',
+    previousClose: '432.95',
+    sparkline: 'M0 74 C24 78 50 80 72 72 C94 64 116 70 142 68 C166 66 190 60 216 62 C240 64 264 70 292 68 C320 66 344 52 358 46 C382 40 402 38 426 42 C448 46 474 52 500 48'
+  }
+};
