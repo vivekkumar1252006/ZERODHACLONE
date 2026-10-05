@@ -60,6 +60,7 @@ test('login opens the demo dashboard directly and keeps the trading video backgr
     'src',
     '/media/trading-side.mp4'
   );
+  expect(screen.getByRole('button', { name: 'Continue' }).form).toHaveAttribute('novalidate');
   fireEvent.click(screen.getByRole('button', { name: 'Continue' }));
 
   expect(navigate).toHaveBeenCalledWith('/dashboard');
