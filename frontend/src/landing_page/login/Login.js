@@ -29,7 +29,7 @@ function Login() {
             <h2 id='login-title'>Log in to your account</h2>
             <p className='login-form-panel__description'>Enter your details to continue to your dashboard.</p>
 
-            <form className='login-form' onSubmit={handleSubmit}>
+            <form className='login-form' onSubmit={handleSubmit} noValidate>
               <label htmlFor='login-user-id'>User ID</label>
               <input
                 id='login-user-id'
