@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
 import App from './App';
 import Product from './landing_page/products/universe';
@@ -67,38 +67,18 @@ test('login opens the demo dashboard directly and keeps the trading video backgr
   expect(sessionStorage.getItem(AUTH_TOKEN_KEY)).toBeNull();
 });
 
-test('signup keeps its video and creates an account before opening the dashboard', async () => {
+test('signup opens the demo dashboard directly and keeps its video', () => {
   const navigate = jest.fn();
   useNavigate.mockReturnValue(navigate);
-  apiRequest.mockResolvedValue({ token: 'new-session-token' });
   render(<Signup />);
 
   expect(screen.getByText('Create your account')).toBeInTheDocument();
   expect(document.querySelectorAll("video source[src='/media/trading-side.mp4']")).toHaveLength(2);
-  fireEvent.change(screen.getByLabelText('Mobile number'), { target: { value: '9876543210' } });
-  fireEvent.change(screen.getByLabelText('Email address'), { target: { value: 'user@example.com' } });
-  fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'password123' } });
-  fireEvent.change(screen.getByLabelText('Confirm password'), { target: { value: 'password123' } });
-  fireEvent.submit(screen.getByRole('button', { name: 'Continue' }).closest('form'));
+  fireEvent.click(screen.getByRole('button', { name: 'Continue' }));
 
-  await waitFor(() => expect(navigate).toHaveBeenCalledWith('/dashboard'));
-  expect(apiRequest).toHaveBeenCalledWith('/api/auth/signup', {
-    method: 'POST',
-    body: { mobile: '9876543210', email: 'user@example.com', password: 'password123' },
-  });
-  expect(sessionStorage.getItem(AUTH_TOKEN_KEY)).toBe('new-session-token');
-});
-
-test('signup rejects mismatched passwords without calling the backend', async () => {
-  render(<Signup />);
-  fireEvent.change(screen.getByLabelText('Mobile number'), { target: { value: '9876543210' } });
-  fireEvent.change(screen.getByLabelText('Email address'), { target: { value: 'user@example.com' } });
-  fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'password123' } });
-  fireEvent.change(screen.getByLabelText('Confirm password'), { target: { value: 'different123' } });
-  fireEvent.submit(screen.getByRole('button', { name: 'Continue' }).closest('form'));
-
-  expect(await screen.findByRole('alert')).toHaveTextContent('Passwords do not match');
+  expect(navigate).toHaveBeenCalledWith('/dashboard');
   expect(apiRequest).not.toHaveBeenCalled();
+  expect(sessionStorage.getItem(AUTH_TOKEN_KEY)).toBeNull();
 });
 
 test('dashboard opens without login and displays the original demo portfolio', () => {
