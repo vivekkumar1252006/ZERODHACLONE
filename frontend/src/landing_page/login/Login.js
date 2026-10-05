@@ -2,32 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../support/Navbar';
 import { appPath, mediaPath } from '../../paths';
-import { apiRequest, AUTH_TOKEN_KEY } from '../../api';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
-  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  async function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    setError('');
-    setSubmitting(true);
-    try {
-      const result = await apiRequest('/api/auth/login', {
-        method: 'POST',
-        body: { email, password },
-      });
-      sessionStorage.setItem(AUTH_TOKEN_KEY, result.token);
-      navigate('/dashboard');
-    } catch (requestError) {
-      setError(requestError.message);
-    } finally {
-      setSubmitting(false);
-    }
+    navigate('/dashboard');
   }
 
   return (
@@ -35,7 +19,7 @@ function Login() {
       <Navbar variant='login' />
       <main className='login-page'>
         <div className='login-background-video' aria-hidden='true'>
-          <video autoPlay loop muted playsInline poster={mediaPath('trading-hero.png')}>
+          <video autoPlay loop muted playsInline preload='auto' poster={mediaPath('trading-hero.png')}>
             <source src={mediaPath('trading-side.mp4')} type='video/mp4' />
           </video>
         </div>
@@ -46,16 +30,15 @@ function Login() {
             <p className='login-form-panel__description'>Enter your details to continue to your dashboard.</p>
 
             <form className='login-form' onSubmit={handleSubmit}>
-              <label htmlFor='login-email'>Email address</label>
+              <label htmlFor='login-user-id'>User ID</label>
               <input
-                id='login-email'
-                name='email'
-                type='email'
-                autoComplete='email'
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder='Enter your email address'
-                required
+                id='login-user-id'
+                name='userId'
+                type='text'
+                autoComplete='username'
+                value={userId}
+                onChange={(event) => setUserId(event.target.value)}
+                placeholder='Enter your user ID'
               />
 
               <label htmlFor='login-password'>Password</label>
@@ -81,14 +64,11 @@ function Login() {
               </div>
 
               <a className='login-forgot-link' href={appPath('/support')}>Forgot password?</a>
-              {error && <p className='form-error' role='alert'>{error}</p>}
-              <button className='login-submit' type='submit' disabled={submitting}>
-                {submitting ? 'Signing in…' : 'Continue'}
-              </button>
+              <button className='login-submit' type='submit'>Continue</button>
             </form>
 
             <p className='login-demo-note'>
-              Your account is securely verified before opening the dashboard.
+              Demo access: click Continue to open the dashboard. Credentials are not checked or stored.
             </p>
             <p className='login-signup-link'>
               New to investing? <a href={appPath('/Signup')}>Create an account</a>

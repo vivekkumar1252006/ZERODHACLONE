@@ -12,7 +12,7 @@ function OpenPositions({ positions, onDelete }) {
 
       {!positions.length && <p className='empty-state'>No holdings saved yet. Add one to start tracking your portfolio.</p>}
       {positions.map((position) => (
-        <div className='position-row' key={position.id}>
+        <div className='position-row' key={position.id || position.symbol}>
           <span>
             <b>{position.symbol}</b>
             <small>{position.qty} shares · Avg {position.avg}</small>
@@ -21,14 +21,16 @@ function OpenPositions({ positions, onDelete }) {
             <b>{position.ltp}</b>
             <em className={position.positive ? 'positive' : 'negative'}>{position.pnl}</em>
           </span>
-          <button
-            type='button'
-            className='holding-delete'
-            onClick={() => onDelete(position.id)}
-            aria-label={`Remove ${position.symbol}`}
-          >
-            Remove
-          </button>
+          {onDelete && (
+            <button
+              type='button'
+              className='holding-delete'
+              onClick={() => onDelete(position.id)}
+              aria-label={`Remove ${position.symbol}`}
+            >
+              Remove
+            </button>
+          )}
         </div>
       ))}
     </article>

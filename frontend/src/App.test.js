@@ -51,22 +51,20 @@ test('renders product page console section', () => {
   expect(screen.getByText(/Console/i)).toBeInTheDocument();
 });
 
-test('login verifies the account before opening the dashboard', async () => {
+test('login opens the demo dashboard directly and keeps the trading video background', () => {
   const navigate = jest.fn();
   useNavigate.mockReturnValue(navigate);
-  apiRequest.mockResolvedValue({ token: 'session-token' });
   render(<Login />);
 
-  fireEvent.change(screen.getByLabelText('Email address'), { target: { value: 'user@example.com' } });
-  fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'password123' } });
-  fireEvent.submit(screen.getByRole('button', { name: 'Continue' }).closest('form'));
+  expect(document.querySelector('.login-background-video video source')).toHaveAttribute(
+    'src',
+    '/media/trading-side.mp4'
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'Continue' }));
 
-  await waitFor(() => expect(navigate).toHaveBeenCalledWith('/dashboard'));
-  expect(apiRequest).toHaveBeenCalledWith('/api/auth/login', {
-    method: 'POST',
-    body: { email: 'user@example.com', password: 'password123' },
-  });
-  expect(sessionStorage.getItem(AUTH_TOKEN_KEY)).toBe('session-token');
+  expect(navigate).toHaveBeenCalledWith('/dashboard');
+  expect(apiRequest).not.toHaveBeenCalled();
+  expect(sessionStorage.getItem(AUTH_TOKEN_KEY)).toBeNull();
 });
 
 test('signup keeps its video and creates an account before opening the dashboard', async () => {
@@ -103,44 +101,16 @@ test('signup rejects mismatched passwords without calling the backend', async ()
   expect(apiRequest).not.toHaveBeenCalled();
 });
 
-test('dashboard loads the signed-in user holdings from the backend', async () => {
+test('dashboard opens without login and displays the original demo portfolio', () => {
   const navigate = jest.fn();
   useNavigate.mockReturnValue(navigate);
-  sessionStorage.setItem(AUTH_TOKEN_KEY, 'session-token');
-  apiRequest.mockImplementation((path, options = {}) => {
-    if (path === '/api/auth/me') {
-      return Promise.resolve({ user: { email: 'user@example.com' } });
-    }
-    if (path === '/api/holdings' && options.method === 'POST') {
-      return Promise.resolve({
-        _id: 'holding-2',
-        name: 'GOOGL',
-        qty: 3,
-        price: 150,
-        avg: 140,
-      });
-    }
-    return Promise.resolve([{ _id: 'holding-1', name: 'INFY', qty: 2, price: 120, avg: 100 }]);
-  });
 
   render(<Dashboard />);
 
-  expect((await screen.findAllByText('INFY')).length).toBeGreaterThan(0);
-  expect(screen.getByText('1 saved instrument')).toBeInTheDocument();
-  expect(apiRequest).toHaveBeenCalledWith('/api/auth/me');
-  expect(apiRequest).toHaveBeenCalledWith('/api/holdings');
-
-  fireEvent.change(screen.getByLabelText('Symbol'), { target: { value: 'GOOGL' } });
-  fireEvent.change(screen.getByLabelText('Quantity'), { target: { value: '3' } });
-  fireEvent.change(screen.getByLabelText('Current price (₹)'), { target: { value: '150' } });
-  fireEvent.change(screen.getByLabelText('Average price (₹)'), { target: { value: '140' } });
-  fireEvent.submit(screen.getByRole('button', { name: 'Save holding' }).closest('form'));
-
-  expect((await screen.findAllByText('GOOGL')).length).toBeGreaterThan(0);
-  expect(apiRequest).toHaveBeenCalledWith('/api/holdings', {
-    method: 'POST',
-    body: { name: 'GOOGL', qty: '3', price: '150', avg: '140' },
-  });
+  expect(screen.getByText('Available margin')).toBeInTheDocument();
+  expect(screen.getByText('Market open')).toBeInTheDocument();
+  expect(apiRequest).not.toHaveBeenCalled();
+  expect(navigate).not.toHaveBeenCalled();
 });
 
 test('product page uses local image assets without spaced URLs', () => {
